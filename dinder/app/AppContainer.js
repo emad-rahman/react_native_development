@@ -1,9 +1,11 @@
 import react, { Component } from 'react'
 import { Drawer, View} from 'native-base'
+import { Navigator } from 'react-native'
 
 export default class AppContainer extends Component {
     constructor (props){
         this.state = {
+            toggled: false,
             store: {},
             theme: null
         }
@@ -21,16 +23,29 @@ export default class AppContainer extends Component {
         this.setState({toggled: false})
     }
 
+    renderScene (route, navigator){
+        switch (route) {
+            default: {
+                return null
+            }
+        }
+    }
     render(){
         return (
             <Drawer
                 ref = {(ref) => this._drawer = ref}
                 type = "displace"
-                content = {<View style={{backgroundColor: "#000", height: 1000}}
-                />}
+                content = {<View style={{backgroundColor: "#000", height: 1000}}/>}
                 onClose = {this.closeDrawer.bind(this)}
                 onOpen = {this.openDrawer.bind(this)}
                 openDrawerOffset = {0.2}
+                >
+                    <Navigator
+                        ref = {(ref) => this._navigator = ref}
+                        configureScene = {this.configureScene.bind(this)}
+                        renderScene = {this.renderScene.bind(this)}
+                    />
+                </Drawer>
         )
     }
 }
