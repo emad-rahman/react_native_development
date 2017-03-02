@@ -5,11 +5,14 @@ import { Navigator } from 'react-native'
 import SideMenu from './components/sideMenu'
 
 import SettingsStore from './stores/settingsStore'
+import AuthStore from './stores/AuthStore'
 import SplashScene from './scenes/splashScene'
 
 import theme from './theme/base-theme'
 
+
 const settings = new SettingsStore()
+const authStore = new AuthStore()
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -17,7 +20,8 @@ export default class AppContainer extends Component {
     this.state = {
       toggled: false,
       store: {
-        settings: settings
+        settings: settings,
+        auth: authStore
       },
       theme: theme
     }
