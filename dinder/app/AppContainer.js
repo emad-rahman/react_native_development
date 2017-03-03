@@ -5,8 +5,10 @@ import { Navigator } from 'react-native'
 import SideMenu from './components/sideMenu'
 
 import SettingsStore from './stores/settingsStore'
-import AuthStore from './stores/AuthStore'
+import AuthStore from './stores/authStore'
+
 import SplashScene from './scenes/splashScene'
+import LoginScene from './scenes/loginScene'
 
 import theme from './theme/base-theme'
 
@@ -39,6 +41,9 @@ export default class AppContainer extends Component {
     switch(route.title) {
       case 'Splash': {
         return <SplashScene {...route.passProps} navigator={navigator}/>
+      }
+      case 'Login': {
+          return <LoginScene {...route.passProps} navigator = {navigator}/>
       }
       default: {
         return null
