@@ -1,3 +1,9 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -5,14 +11,15 @@ import {
   Text,
   View
 } from 'react-native';
-import Pin from './app/components/pin'
+import MainComponent from './app/mainComponent.js'
+import MyScene from './app/scenes/MyScene'
 
-export default class flexPractice extends Component {
+export default class testing extends Component {
   render() {
     return (
-        <View style={styles.container}>
-            <Pin />
-        </View>
+      <View style={{flex:1}}>
+        <MainComponent />
+      </View>
     );
   }
 }
@@ -36,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('flexPractice', () => flexPractice);
+AppRegistry.registerComponent('testing', () => testing);
