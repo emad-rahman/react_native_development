@@ -10,38 +10,34 @@ import {
 } from 'react-native'
 import SecondScene from './scenes/SecondScene'
 import MyScene from './scenes/MyScene'
+import Home from './components/home.js'
+import About from './components/about.js'
+
+import { Container, Content, Footer, FooterTab, Button, Icon } from 'native-base';
+import FooterPage from './components/footerPage.js'
 
 export default class MainComponent extends Component{
+    constructor(){
+        super()
+
+        this.renderScene = this.renderScene.bind(this);
+    }
+
+    renderScene(route, navigator){
+        if(route.name == 'homePage'){
+            return <Home navigator={navigator} />
+        }else if(route.name == 'aboutPage'){
+            return <FooterPage navigator={navigator} />
+        }
+    }
+
     render(){
         return (
-            // <Navigator
-            //     initialRoute={{ title: 'My initial scene', index: 0 }}
-            //     renderScene={(route, navigator) => {
-            //         return <MyScene title={route.title} />
-            //     }}
-            // />
 
+            // <FooterPage />
             <Navigator
-                initialRoute={{ title: 'My Initial Scene', index: 0}}
-                renderScene={(route, navigator) =>
-                    <MyScene
-                        title={route.title}
-
-                        onForward={() => {
-                            const nextIndex = route.index + 1;
-                            navigator.push({
-                                title: 'Scene ' + nextIndex,
-                                index: nextIndex,
-                            });
-                        }}
-
-                        onBack={() => {
-                            if(route.index > 0) {
-                                navigator.pop();
-                            }
-                        }}
-                    />
-                }
+                initialRoute={{ name: 'homePage'}}
+                renderScene={this.renderScene}
             />
 
         )
