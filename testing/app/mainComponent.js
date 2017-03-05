@@ -12,9 +12,24 @@ import SecondScene from './scenes/SecondScene'
 import MyScene from './scenes/MyScene'
 import Home from './components/home.js'
 import About from './components/about.js'
+import Settings from './components/settings.js'
 
 import { Container, Content, Footer, FooterTab, Button, Icon } from 'native-base';
 import FooterPage from './components/footerPage.js'
+
+import { Router, Scene } from 'react-native-router-flux'
+
+
+
+
+
+
+const TabIcon = ({ selected, title }) => {
+    return(
+        <Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>
+    );
+}
+
 
 export default class MainComponent extends Component{
     constructor(){
@@ -34,12 +49,50 @@ export default class MainComponent extends Component{
     render(){
         return (
 
-            // <FooterPage />
-            <Navigator
-                initialRoute={{ name: 'homePage'}}
-                renderScene={this.renderScene}
-            />
 
+
+            // <FooterPage />
+            // <Navigator
+            //     initialRoute={{ name: 'homePage'}}
+            //     renderScene={this.renderScene}
+            // />
+
+            <Router>
+                <Scene key='root'>
+                    <Scene
+                        key="tab"
+                        tabs={true}
+                        tabBarStyle={{ backgroundColor: 'grey'}}
+                    >
+                        <Scene key="hi" title="Tab 1" icon={TabIcon}>
+                            <Scene
+                                key='home'
+                                component={Home}
+                                title='Home Page'
+                                initial
+                            />
+                        </Scene>
+
+                        <Scene key="hi2" title="Tab 2" icon={TabIcon}>
+                        <Scene
+                            key='about'
+                            component={About}
+                            title='About'
+                        />
+                        </Scene>
+
+                        <Scene key="hi3" title="Tab 3" icon={TabIcon}>
+                        <Scene
+                            key='settings'
+                            component={Settings}
+                            title='Settings'
+                        />
+                        </Scene>
+
+                    </Scene>
+
+                </Scene>
+            </Router>
         )
     }
 }
